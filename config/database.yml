@@ -1,0 +1,35 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: quiz_development
+  username: postgres
+  password:
+  host: localhost
+  port: 5432
+
+  # Schema search path. The server defaults to $user,public
+  #schema_search_path: myapp,sharedapp,public
+
+test:
+  <<: *default
+  database: quiz_test
+  username: postgres
+  password:
+
+#   production:
+#     url: <%= ENV['MY_APP_DATABASE_URL'] %>
+
+# Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
+# for a full overview on how database connection configuration can be specified.
+#
+production:
+  <<: *default
+  database: quiz_production
+  username: quiz
+  password: <%= ENV['QUIZ_DATABASE_PASSWORD'] %>
